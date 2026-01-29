@@ -468,7 +468,7 @@
             flex-wrap: wrap;
         }
 
-        /* Popup styles - MODIFICADO para más espacio entre líneas */
+        /* Popup styles */
         .popup-overlay {
             display: none;
             position: fixed;
@@ -555,7 +555,7 @@
             padding: 0 1rem;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1rem; /* Aumentado para más espacio */
+            gap: 1rem;
         }
 
         .team-item {
@@ -567,7 +567,7 @@
             border-radius: var(--radius-md);
             border: 1px solid var(--border-color);
             transition: all 0.3s ease;
-            min-height: 120px; /* Aumentado para más espacio */
+            min-height: 100px;
         }
 
         .team-item:hover {
@@ -576,18 +576,19 @@
         }
 
         .team-item-info {
-            margin-bottom: 1rem; /* Aumentado para más espacio */
+            margin-bottom: 1rem;
         }
 
         .team-item-name {
             font-weight: 600;
-            margin-bottom: 0.5rem; /* Aumentado para más espacio */
+            margin-bottom: 0.5rem;
             font-size: 0.95rem;
         }
 
         .team-item-elo {
             font-size: 0.85rem;
             color: var(--text-light);
+            display: none;
         }
 
         .popup-footer {
@@ -595,7 +596,7 @@
             background: var(--light-blue);
             border-top: 1px solid var(--border-color);
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             flex-shrink: 0;
         }
 
@@ -628,7 +629,7 @@
             font-size: 1.2rem;
         }
 
-        /* Contenedor de calendario con scroll y DOS columnas (modificado) */
+        /* Contenedor de calendario con TRES columnas - FIXED */
         .calendar-container {
             margin-top: 1.25rem;
             max-height: 400px;
@@ -638,7 +639,7 @@
             padding: 1rem;
             background: white;
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* SOLO DOS COLUMNAS */
+            grid-template-columns: repeat(3, 1fr); /* TRES COLUMNAS FIJAS */
             gap: 1.5rem;
         }
 
@@ -694,12 +695,21 @@
             border-bottom: none;
         }
 
+        /* Estilo para nombres de equipos en torneos (más pequeños) */
+        .match span:first-child,
+        .match span:last-child {
+            font-size: 0.9rem;
+            flex: 1;
+            margin-right: 8px;
+        }
+
         /* Resultados a la izquierda */
         .match-result {
             font-weight: 600;
             color: var(--primary-blue);
             margin-right: auto;
             padding: 0 1rem;
+            font-size: 0.9rem;
         }
 
         .match-buttons {
@@ -708,16 +718,24 @@
             align-items: center;
         }
 
+        /* Botón Sim. más pequeño */
         .simulate-match {
             background: none;
             border: none;
             color: var(--primary-blue);
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             display: flex;
             align-items: center;
             gap: 0.25rem;
             white-space: nowrap;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .simulate-match:hover {
+            background: var(--light-blue);
         }
 
         .simulate-neutral {
@@ -731,6 +749,13 @@
             gap: 0.25rem;
             white-space: nowrap;
             text-decoration: underline;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .simulate-neutral:hover {
+            background: var(--light-blue);
         }
 
         .standings {
@@ -803,6 +828,63 @@
 
         .knockout-round h3 i {
             color: var(--primary-blue);
+        }
+
+        /* Eliminatorias con dos columnas */
+        .knockout-two-legs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .leg-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .leg-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-blue);
+        }
+
+        .two-leg-match {
+            background: var(--light-blue);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .match-leg {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .match-leg:last-child {
+            border-bottom: none;
+        }
+
+        .global-result {
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 2px dashed var(--border-color);
+            font-size: 1rem;
+        }
+
+        .qualified-team {
+            font-weight: 700;
+            color: var(--success);
         }
 
         /* Partido por el 3er puesto */
@@ -997,6 +1079,11 @@
                 align-items: flex-end;
                 gap: 0.25rem;
             }
+            
+            .knockout-two-legs {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1149,7 +1236,7 @@
                         <div class="teams-display">
                             <span class="team-name" id="result-home-team">Local</span>
                             <span class="vs-container">vs</span>
-<span class="team-name" id="result-away-team">Visitante</span>
+                            <span class="team-name" id="result-away-team">Visitante</span>
                         </div>
                     </div>
                     
@@ -1203,21 +1290,11 @@
                             </div>
                             
                             <div class="form-group">
-                                <label class="form-label">Tipo de partido</label>
-                                <div class="select-group">
-                                    <select id="match-type">
-                                        <option value="single">Partido único</option>
-                                        <option value="double" selected>Ida y vuelta</option>
-                                    </select>
-                                    <select id="tiebreaker-criterion" style="display: none;">
-                                        <option value="goal-difference">Diferencia de goles</option>
-                                        <option value="head-to-head">Golaverage particular</option>
-                                    </select>
+                                <label class="form-label">Opciones de partidos</label>
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="two-legs-checkbox" checked>
+                                    <label for="two-legs-checkbox">Ida y vuelta</label>
                                 </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Opciones</label>
                                 <div class="checkbox-group">
                                     <input type="checkbox" id="tournament-neutral-field">
                                     <label for="tournament-neutral-field">Campo neutral</label>
@@ -1275,7 +1352,7 @@
         </div>
     </main>
 
-    <!-- Team Selection Popup - MODIFICADO -->
+    <!-- Team Selection Popup -->
     <div class="popup-overlay" id="team-popup">
         <div class="popup">
             <div class="popup-header">
@@ -1293,6 +1370,9 @@
                 <!-- Team list will be populated here -->
             </div>
             <div class="popup-footer">
+                <button class="btn btn-secondary" id="popup-random-btn">
+                    <i class="fas fa-random"></i> Seleccionar equipos aleatoriamente
+                </button>
                 <button class="btn btn-primary" id="popup-ok-btn">
                     <i class="fas fa-check"></i> OK
                 </button>
@@ -1360,12 +1440,11 @@
             const selectedTeamsContainer = document.getElementById('selected-teams');
             const teamCount = document.getElementById('team-count');
             const tournamentFormatSelect = document.getElementById('tournament-format');
-            const matchTypeSelect = document.getElementById('match-type');
+            const twoLegsCheckbox = document.getElementById('two-legs-checkbox');
             const tournamentNeutralFieldCheckbox = document.getElementById('tournament-neutral-field');
             const doubleAwayGoalsCheckbox = document.getElementById('double-away-goals');
             const thirdPlaceCheckbox = document.getElementById('third-place-match');
             const seededTeamsCheckbox = document.getElementById('seeded-teams');
-            const tiebreakerCriterionSelect = document.getElementById('tiebreaker-criterion');
             const startTournamentBtn = document.getElementById('start-tournament-btn');
             const resetTournamentBtn = document.getElementById('reset-tournament-btn');
             const tournamentContent = document.getElementById('tournament-content');
@@ -1379,6 +1458,7 @@
             const teamList = document.getElementById('team-list');
             const popupClose = document.querySelector('.popup-close');
             const popupOkBtn = document.getElementById('popup-ok-btn');
+            const popupRandomBtn = document.getElementById('popup-random-btn');
             
             // Scroll to top
             const scrollToTopBtn = document.getElementById('scroll-to-top');
@@ -1456,14 +1536,12 @@
                 const format = tournamentFormatSelect.value;
                 const isKnockout = format.includes('knockout');
                 const isLeague = format === 'league';
-                const isDouble = matchTypeSelect.value === 'double';
                 
-                // Show/hide tiebreaker criterion for league
-                tiebreakerCriterionSelect.parentElement.style.display = 
-                    isLeague ? 'block' : 'none';
+                // Mostrar siempre el checkbox de ida y vuelta
+                twoLegsCheckbox.parentElement.style.display = 'flex';
                 
                 // Show/hide double away goals option - solo si es eliminatoria e ida y vuelta
-                if (isKnockout && isDouble) {
+                if (isKnockout && twoLegsCheckbox.checked) {
                     doubleAwayGoalsCheckbox.parentElement.style.display = 'flex';
                 } else {
                     doubleAwayGoalsCheckbox.parentElement.style.display = 'none';
@@ -1587,7 +1665,6 @@
                         teamItem.innerHTML = `
                             <div class="team-item-info">
                                 <div class="team-item-name">${team}</div>
-                                <div class="team-item-elo">ELO: ${teamData[team]}</div>
                             </div>
                             <button class="btn ${homeTeam === team || awayTeam === team ? 'btn-primary' : 'btn-secondary'}" 
                                     onclick="window.selectTeamForMatch('${team}')" 
@@ -1600,7 +1677,6 @@
                         teamItem.innerHTML = `
                             <div class="team-item-info">
                                 <div class="team-item-name">${team}</div>
-                                <div class="team-item-elo">ELO: ${teamData[team]}</div>
                             </div>
                             <button class="btn ${isSelected ? 'btn-primary' : 'btn-secondary'}" 
                                     onclick="${isSelected ? '' : `window.addTeamToTournament('${team}')`}"
@@ -1841,46 +1917,29 @@
                 resultAwayTeam.textContent = awayTeam;
                 matchResult.textContent = `${homeGoals} - ${awayGoals}`;
 
-                // Generate commentary
+                // Generate commentary SIN mencionar ELO
                 let commentary = '';
                 const goalDifference = homeGoals - awayGoals;
-                const eloDiff = homeElo - awayElo;
 
                 if (homeGoals > awayGoals) {
                     if (goalDifference >= 3) {
-                        if (eloDiff > 25) {
-                            commentary = `Victoria contundente y esperada de ${homeTeam}. Su clara superioridad en el ELO se reflejó en el marcador.`;
-                        } else {
-                            commentary = `¡Goleada sorprendente! ${homeTeam} superó ampliamente a ${awayTeam}.`;
-                        }
+                        commentary = `¡Goleada! ${homeTeam} superó ampliamente a ${awayTeam} con una demostración de fuerza.`;
                     } else if (goalDifference === 2) {
                         commentary = `Victoria clara de ${homeTeam}. El equipo mostró mayor calidad durante todo el partido.`;
                     } else {
-                        if (eloDiff > 15) {
-                            commentary = `Victoria ajustada de ${homeTeam}, como era esperable por su ventaja en el ELO.`;
-                        } else {
-                            commentary = `Triunfo valioso de ${homeTeam} en un partido muy disputado.`;
-                        }
+                        commentary = `Triunfo valioso de ${homeTeam} en un partido muy disputado.`;
                     }
                     
-                    if (!isNeutral && eloDiff < 0) {
-                        commentary += ` La ventaja de local fue clave para que ${homeTeam} superara a un rival teóricamente superior.`;
+                    if (!isNeutral) {
+                        commentary += ` La ventaja de local fue clave para la victoria.`;
                     }
                 } else if (awayGoals > homeGoals) {
                     if (goalDifference <= -3) {
-                        if (eloDiff < -25) {
-                            commentary = `Victoria contundente y justa de ${awayTeam}. Su superioridad en el ELO fue evidente.`;
-                        } else {
-                            commentary = `¡Sorpresa mayúscula! ${awayTeam} humilló a ${homeTeam} con una goleada inesperada.`;
-                        }
+                        commentary = `¡Sorpresa mayúscula! ${awayTeam} humilló a ${homeTeam} con una goleada inesperada.`;
                     } else if (goalDifference === -2) {
                         commentary = `Sólida victoria de ${awayTeam}. Jugaron con más inteligencia y efectividad.`;
                     } else {
-                        if (eloDiff < -15) {
-                            commentary = `Triunfo esperado de ${awayTeam}, que demostró ser el equipo de mayor calidad.`;
-                        } else {
-                            commentary = `Victoria valiosa de ${awayTeam} fuera de casa. Superaron las expectativas.`;
-                        }
+                        commentary = `Victoria valiosa de ${awayTeam} fuera de casa. Superaron las expectativas.`;
                     }
                     
                     if (!isNeutral) {
@@ -1889,10 +1948,8 @@
                 } else {
                     commentary = `Empate equilibrado entre ${homeTeam} y ${awayTeam}. Ambos equipos demostraron un nivel similar.`;
                     
-                    if (!isNeutral && eloDiff > 20) {
-                        commentary = `Empate sorprendente. ${homeTeam} no supo aprovechar su ventaja de local y su superioridad en el ELO.`;
-                    } else if (!isNeutral && eloDiff < -20) {
-                        commentary = `Buen resultado para ${awayTeam} que aguantó el tipo fuera de casa contra un rival superior.`;
+                    if (!isNeutral) {
+                        commentary += ` Un resultado justo para ambos contendientes.`;
                     }
                 }
 
@@ -1916,7 +1973,7 @@
                 }, 100);
             }
 
-            // Simulate extra time - MODIFICADO para permitir solo un click
+            // Simulate extra time
             simulateExtraTimeBtn.addEventListener('click', function() {
                 if (!homeTeam || !awayTeam) {
                     alert('Por favor, simula un partido primero.');
@@ -1969,7 +2026,7 @@
                 matchCommentary.textContent = commentary;
             });
 
-            // Simulate penalties - MODIFICADO para permitir solo un click
+            // Simulate penalties
             simulatePenaltiesBtn.addEventListener('click', function() {
                 if (!homeTeam || !awayTeam) {
                     alert('Por favor, simula un partido primero.');
@@ -2022,6 +2079,13 @@
 
             // Start tournament
             startTournamentBtn.addEventListener('click', function() {
+                // Verificar si ya hay un torneo en curso
+                if (tournamentContent.classList.contains('visible') && tournamentContent.innerHTML.trim() !== '') {
+                    if (!confirm('Ya hay un torneo en curso. Si procedes, se eliminarán todos los datos del torneo actual. ¿Continuar?')) {
+                        return;
+                    }
+                }
+                
                 const format = tournamentFormatSelect.value;
                 const requiredTeams = {
                     '32_knockout': 32,
@@ -2103,7 +2167,7 @@
                 }
             }
 
-            // Generate league tournament
+            // Generate league tournament - MODIFICADO: 3 columnas fijas
             function generateLeagueTournament(teams) {
                 const groupDiv = document.createElement('div');
                 groupDiv.className = 'group';
@@ -2146,12 +2210,9 @@
                 
                 updateStandingsTable('Liga');
                 
-                // Crear contenedor de calendario con DOS columnas
+                // Crear contenedor de calendario con TRES columnas FIJAS
                 const calendarContainer = document.createElement('div');
                 calendarContainer.className = 'calendar-container';
-                
-                const matchesContainer = document.createElement('div');
-                matchesContainer.className = 'matches-container';
                 
                 const n = teams.length;
                 const rounds = n % 2 === 0 ? n - 1 : n;
@@ -2182,29 +2243,29 @@
                 }
                 
                 // Generate return matches if double round-robin
-                if (matchTypeSelect.value === 'double') {
+                if (twoLegsCheckbox.checked) {
                     const returnSchedule = schedule.map(round => 
                         round.map(match => ({ home: match.away, away: match.home, round: match.round + rounds }))
                     );
                     schedule = schedule.concat(returnSchedule);
                 }
                 
-                // Agrupar jornadas en pares para mostrar DOS por línea
+                // Agrupar jornadas de 3 en 3 - FIXED
                 const groupedRounds = [];
-                for (let i = 0; i < schedule.length; i += 2) {
-                    groupedRounds.push(schedule.slice(i, i + 2));
+                for (let i = 0; i < schedule.length; i += 3) {
+                    groupedRounds.push(schedule.slice(i, i + 3));
                 }
                 
-                // Display matches en DOS columnas
-                groupedRounds.forEach((roundPair, pairIndex) => {
-                    const roundPairContainer = document.createElement('div');
-                    roundPairContainer.style.display = 'grid';
-                    roundPairContainer.style.gridTemplateColumns = '1fr 1fr'; // SOLO DOS COLUMNAS
-                    roundPairContainer.style.gap = '1.5rem';
-                    roundPairContainer.style.marginBottom = '1.5rem';
+                // Display matches en TRES columnas FIJAS
+                groupedRounds.forEach((roundTriple, tripleIndex) => {
+                    const roundTripleContainer = document.createElement('div');
+                    roundTripleContainer.style.display = 'grid';
+                    roundTripleContainer.style.gridTemplateColumns = '1fr 1fr 1fr'; // TRES COLUMNAS FIJAS
+                    roundTripleContainer.style.gap = '1.5rem';
+                    roundTripleContainer.style.marginBottom = '1.5rem';
                     
-                    roundPair.forEach((roundMatches, roundOffset) => {
-                        const roundNumber = pairIndex * 2 + roundOffset + 1;
+                    roundTriple.forEach((roundMatches, roundOffset) => {
+                        const roundNumber = tripleIndex * 3 + roundOffset + 1;
                         if (!roundMatches) return;
                         
                         const roundColumn = document.createElement('div');
@@ -2222,18 +2283,18 @@
                                 <span>${match.home}</span>
                                 <span class="match-result" id="result-${matchId}">-</span>
                                 <span>${match.away}</span>
-                                <button class="simulate-match" data-match="${matchId}" data-home="${match.home}" data-away="${match.away}">
-                                    <i class="fas fa-play"></i> Simular
+                                <button class="simulate-match" data-match="${matchId}" data-home="${match.home}" data-away="${match.away}" title="Simular partido">
+                                    <i class="fas fa-play"></i> Sim.
                                 </button>
                             `;
                             roundMatchesContainer.appendChild(matchDiv);
                         });
                         
                         roundColumn.appendChild(roundMatchesContainer);
-                        roundPairContainer.appendChild(roundColumn);
+                        roundTripleContainer.appendChild(roundColumn);
                     });
                     
-                    calendarContainer.appendChild(roundPairContainer);
+                    calendarContainer.appendChild(roundTripleContainer);
                 });
                 
                 groupDiv.appendChild(standingsTable);
@@ -2262,7 +2323,7 @@
                         const away = this.dataset.away;
                         simulateLeagueMatch(matchId, home, away, false);
                         this.disabled = true;
-                        this.innerHTML = '<i class="fas fa-check"></i> Simulado';
+                        this.innerHTML = '<i class="fas fa-check"></i> Sim.';
                     });
                 });
             }
@@ -2503,10 +2564,10 @@
                 });
             }
 
-            // Generate knockout tournament - MODIFICADO para eliminar botón de campo neutral en rondas iniciales
+            // Generate knockout tournament - MODIFICADO: Presentación correcta
             function generateKnockoutTournament(teams, format) {
                 const knockoutDiv = document.createElement('div');
-                knockoutDiv.className = 'knockout-stage';
+                knockoutDiv.className = 'knockout-round';
                 
                 let roundName = '';
                 
@@ -2525,46 +2586,124 @@
                         break;
                 }
                 
-                knockoutDiv.innerHTML = `<h3>${roundName}</h3>`;
+                knockoutDiv.innerHTML = `<h3><i class="fas fa-arrow-right"></i> ${roundName}</h3>`;
                 
-                // Crear contenedor de calendario
-                const calendarContainer = document.createElement('div');
-                calendarContainer.className = 'calendar-container';
+                // Determinar si es ida y vuelta
+                const isTwoLegs = twoLegsCheckbox.checked;
                 
-                // Create matches
-                const matchesContainer = document.createElement('div');
-                matchesContainer.className = 'matches-container';
-                
-                // Pair teams
-                for (let i = 0; i < teams.length; i += 2) {
-                    if (i + 1 < teams.length) {
-                        const matchId = `ko-0-${i/2}`;
-                        const matchDiv = document.createElement('div');
-                        matchDiv.className = 'match';
-                        matchDiv.innerHTML = `
-                            <span>${teams[i]}</span>
-                            <span class="match-result" id="result-${matchId}">-</span>
-                            <span>${teams[i + 1]}</span>
-                            <button class="simulate-match" data-match="${matchId}" data-home="${teams[i]}" data-away="${teams[i + 1]}">
-                                <i class="fas fa-play"></i> Simular
-                            </button>
-                        `;
-                        matchesContainer.appendChild(matchDiv);
-                        
-                        // Store match info
-                        tournamentData.knockoutRounds[0] = tournamentData.knockoutRounds[0] || [];
-                        tournamentData.knockoutRounds[0].push({
-                            id: matchId,
-                            home: teams[i],
-                            away: teams[i + 1],
-                            winner: null,
-                            result: null
-                        });
+                if (isTwoLegs) {
+                    // Crear contenedor de dos columnas para ida y vuelta
+                    const twoLegsContainer = document.createElement('div');
+                    twoLegsContainer.className = 'knockout-two-legs';
+                    
+                    // Columna de ida
+                    const firstLegColumn = document.createElement('div');
+                    firstLegColumn.className = 'leg-column';
+                    firstLegColumn.innerHTML = `<div class="leg-title">Ida</div>`;
+                    
+                    // Columna de vuelta
+                    const secondLegColumn = document.createElement('div');
+                    secondLegColumn.className = 'leg-column';
+                    secondLegColumn.innerHTML = `<div class="leg-title">Vuelta</div>`;
+                    
+                    // Crear enfrentamientos
+                    for (let i = 0; i < teams.length; i += 2) {
+                        if (i + 1 < teams.length) {
+                            const matchId = `ko-0-${i/2}`;
+                            const home = teams[i];
+                            const away = teams[i + 1];
+                            
+                            // Crear contenedor para el partido de IDA (solo en la columna de ida)
+                            const firstLegMatch = document.createElement('div');
+                            firstLegMatch.className = 'two-leg-match';
+                            firstLegMatch.innerHTML = `
+                                <div class="match-leg">
+                                    <span>${home}</span>
+                                    <span class="match-result" id="first-leg-${matchId}">-</span>
+                                    <span>${away}</span>
+                                    <button class="simulate-match" data-match="${matchId}" data-leg="first" data-home="${home}" data-away="${away}" title="Simular partido de ida">
+                                        <i class="fas fa-play"></i> Sim.
+                                    </button>
+                                </div>
+                                <div class="global-result" id="global-${matchId}" style="display: none;">Global: -</div>
+                            `;
+                            
+                            // Crear contenedor para el partido de VUELTA (solo en la columna de vuelta)
+                            const secondLegMatch = document.createElement('div');
+                            secondLegMatch.className = 'two-leg-match';
+                            secondLegMatch.innerHTML = `
+                                <div class="match-leg">
+                                    <span>${away}</span>
+                                    <span class="match-result" id="second-leg-${matchId}">-</span>
+                                    <span>${home}</span>
+                                    <button class="simulate-match" data-match="${matchId}" data-leg="second" data-home="${away}" data-away="${home}" title="Simular partido de vuelta" disabled>
+                                        <i class="fas fa-play"></i> Sim.
+                                    </button>
+                                </div>
+                                <div class="global-result" id="global-vuelta-${matchId}">Global: -</div>
+                            `;
+                            
+                            // Añadir a las columnas correspondientes
+                            firstLegColumn.appendChild(firstLegMatch);
+                            secondLegColumn.appendChild(secondLegMatch);
+                            
+                            // Store match info
+                            tournamentData.knockoutRounds[0] = tournamentData.knockoutRounds[0] || [];
+                            tournamentData.knockoutRounds[0].push({
+                                id: matchId,
+                                home: home,
+                                away: away,
+                                firstLeg: { homeGoals: null, awayGoals: null, simulated: false },
+                                secondLeg: { homeGoals: null, awayGoals: null, simulated: false },
+                                winner: null,
+                                resultText: ''
+                            });
+                        }
                     }
+                    
+                    twoLegsContainer.appendChild(firstLegColumn);
+                    twoLegsContainer.appendChild(secondLegColumn);
+                    knockoutDiv.appendChild(twoLegsContainer);
+                } else {
+                    // Partido único - usar diseño tradicional
+                    const calendarContainer = document.createElement('div');
+                    calendarContainer.className = 'calendar-container';
+                    
+                    const matchesContainer = document.createElement('div');
+                    matchesContainer.className = 'matches-container';
+                    
+                    // Pair teams
+                    for (let i = 0; i < teams.length; i += 2) {
+                        if (i + 1 < teams.length) {
+                            const matchId = `ko-0-${i/2}`;
+                            const matchDiv = document.createElement('div');
+                            matchDiv.className = 'match';
+                            matchDiv.innerHTML = `
+                                <span>${teams[i]}</span>
+                                <span class="match-result" id="result-${matchId}">-</span>
+                                <span>${teams[i + 1]}</span>
+                                <button class="simulate-match" data-match="${matchId}" data-home="${teams[i]}" data-away="${teams[i + 1]}" title="Simular partido">
+                                    <i class="fas fa-play"></i> Sim.
+                                </button>
+                            `;
+                            matchesContainer.appendChild(matchDiv);
+                            
+                            // Store match info
+                            tournamentData.knockoutRounds[0] = tournamentData.knockoutRounds[0] || [];
+                            tournamentData.knockoutRounds[0].push({
+                                id: matchId,
+                                home: teams[i],
+                                away: teams[i + 1],
+                                winner: null,
+                                result: null
+                            });
+                        }
+                    }
+                    
+                    calendarContainer.appendChild(matchesContainer);
+                    knockoutDiv.appendChild(calendarContainer);
                 }
                 
-                calendarContainer.appendChild(matchesContainer);
-                knockoutDiv.appendChild(calendarContainer);
                 tournamentContent.appendChild(knockoutDiv);
                 
                 // Add event listeners
@@ -2573,18 +2712,29 @@
                         const matchId = this.dataset.match;
                         const home = this.dataset.home;
                         const away = this.dataset.away;
-                        simulateKnockoutMatch(matchId, home, away, 0, false);
+                        const leg = this.dataset.leg;
+                        
+                        if (leg === 'second') {
+                            // Verificar que se haya simulado la ida primero
+                            const matchData = tournamentData.knockoutRounds[0].find(m => m.id === matchId);
+                            if (!matchData.firstLeg.simulated) {
+                                alert('Primero debes simular el partido de ida.');
+                                return;
+                            }
+                        }
+                        
+                        simulateKnockoutMatch(matchId, home, away, 0, leg, false);
                         this.disabled = true;
-                        this.innerHTML = '<i class="fas fa-check"></i> Simulado';
+                        this.innerHTML = '<i class="fas fa-check"></i> Sim.';
                     });
                 });
             }
 
-            // Simulate knockout match con sistema de forma - MEJORADO para manejar ida y vuelta
-            function simulateKnockoutMatch(matchId, home, away, roundIndex, isNeutral = false) {
+            // Simulate knockout match - MODIFICADO: Corrección de presentación
+            function simulateKnockoutMatch(matchId, home, away, roundIndex, leg = null, isNeutral = false) {
                 const homeElo = teamData[home];
                 const awayElo = teamData[away];
-                const isDouble = matchTypeSelect.value === 'double';
+                const isTwoLegs = twoLegsCheckbox.checked;
                 
                 // Verificar bonificaciones por forma
                 const homeBonus = teamStreaks[home]?.hasBonus ? 1.1 : 1.0;
@@ -2594,87 +2744,176 @@
                 const tournamentIsNeutral = tournamentNeutralFieldCheckbox.checked;
                 const finalIsNeutral = isNeutral || tournamentIsNeutral;
                 
-                let homeGoals, awayGoals, winner, resultText;
-                
-                if (isDouble) {
-                    // Two-leg tie - Ida y vuelta
-                    const leg1 = simulateTournamentMatch(home, away, finalIsNeutral, homeBonus, awayBonus);
-                    const leg2 = simulateTournamentMatch(away, home, finalIsNeutral, awayBonus, homeBonus);
+                if (isTwoLegs && leg) {
+                    // Simular pierna específica
+                    const matchData = tournamentData.knockoutRounds[roundIndex].find(m => m.id === matchId);
                     
-                    const totalHome = leg1.homeGoals + leg2.awayGoals;
-                    const totalAway = leg1.awayGoals + leg2.homeGoals;
-                    
-                    homeGoals = totalHome;
-                    awayGoals = totalAway;
-                    resultText = `${leg1.homeGoals}-${leg1.awayGoals} / ${leg2.homeGoals}-${leg2.awayGoals} (${totalHome}-${totalAway})`;
-                    
-                    if (totalHome > totalAway) {
-                        winner = home;
-                    } else if (totalAway > totalHome) {
-                        winner = away;
-                    } else {
-                        // Empate en el global
-                        if (doubleAwayGoalsCheckbox.checked && !tournamentIsNeutral) {
-                            // Regla del valor doble de goles fuera de casa
-                            const awayGoalsHomeTeam = leg2.awayGoals; // Goles del equipo local como visitante
-                            const awayGoalsAwayTeam = leg1.awayGoals; // Goles del equipo visitante como visitante
-                            
-                            if (awayGoalsHomeTeam > awayGoalsAwayTeam) {
-                                winner = home;
-                                resultText += ' (goles fuera de casa)';
-                            } else if (awayGoalsAwayTeam > awayGoalsHomeTeam) {
-                                winner = away;
-                                resultText += ' (goles fuera de casa)';
-                            } else {
-                                // Empate también en goles fuera de casa, prórroga en el segundo partido
-                                const extra = simulateExtraTimeMatchTournament(homeElo, awayElo);
-                                const extraHome = extra.home;
-                                const extraAway = extra.away;
+                    if (leg === 'first') {
+                        // Simular primera pierna (ida)
+                        const result = simulateTournamentMatch(home, away, finalIsNeutral, homeBonus, awayBonus);
+                        matchData.firstLeg.homeGoals = result.homeGoals;
+                        matchData.firstLeg.awayGoals = result.awayGoals;
+                        matchData.firstLeg.simulated = true;
+                        
+                        // Actualizar display de la ida
+                        document.getElementById(`first-leg-${matchId}`).textContent = `${result.homeGoals}-${result.awayGoals}`;
+                        
+                        // Habilitar botón de la vuelta
+                        document.querySelectorAll(`button[data-match="${matchId}"][data-leg="second"]`).forEach(btn => {
+                            btn.disabled = false;
+                        });
+                        
+                        // Actualizar sistema de forma temporalmente
+                        updateTeamFormTemp(home, away, result.homeGoals, result.awayGoals);
+                        
+                    } else if (leg === 'second') {
+                        // Simular segunda pierna (vuelta)
+                        const result = simulateTournamentMatch(home, away, finalIsNeutral, homeBonus, awayBonus);
+                        matchData.secondLeg.homeGoals = result.homeGoals;
+                        matchData.secondLeg.awayGoals = result.awayGoals;
+                        matchData.secondLeg.simulated = true;
+                        
+                        // Actualizar display de la vuelta
+                        document.getElementById(`second-leg-${matchId}`).textContent = `${result.homeGoals}-${result.awayGoals}`;
+                        
+                        // Calcular resultado global
+                        const totalHome = matchData.firstLeg.awayGoals + result.homeGoals;
+                        const totalAway = matchData.firstLeg.homeGoals + result.awayGoals;
+                        
+                        let winner = null;
+                        let resultText = `${totalHome}-${totalAway}`;
+                        let extraText = '';
+                        
+                        if (totalHome > totalAway) {
+                            winner = away;
+                        } else if (totalAway > totalHome) {
+                            winner = home;
+                        } else {
+                            // Empate en el global
+                            if (doubleAwayGoalsCheckbox.checked && !tournamentIsNeutral) {
+                                const awayGoalsHomeTeam = result.homeGoals;
+                                const awayGoalsAwayTeam = matchData.firstLeg.awayGoals;
                                 
-                                const totalHomeWithExtra = totalHome + extraHome;
-                                const totalAwayWithExtra = totalAway + extraAway;
+                                if (awayGoalsHomeTeam > awayGoalsAwayTeam) {
+                                    winner = away;
+                                    extraText = ' (goles fuera)';
+                                } else if (awayGoalsAwayTeam > awayGoalsHomeTeam) {
+                                    winner = home;
+                                    extraText = ' (goles fuera)';
+                                } else {
+                                    const extra = simulateExtraTimeMatchTournament(homeElo, awayElo);
+                                    const totalHomeWithExtra = totalHome + extra.home;
+                                    const totalAwayWithExtra = totalAway + extra.away;
+                                    
+                                    if (totalHomeWithExtra > totalAwayWithExtra) {
+                                        winner = away;
+                                        resultText = `${totalHomeWithExtra}-${totalAwayWithExtra}`;
+                                        extraText = ' PRO';
+                                    } else if (totalAwayWithExtra > totalHomeWithExtra) {
+                                        winner = home;
+                                        resultText = `${totalHomeWithExtra}-${totalAwayWithExtra}`;
+                                        extraText = ' PRO';
+                                    } else {
+                                        const penalties = simulatePenaltiesMatchTournament(homeElo, awayElo);
+                                        winner = penalties.home > penalties.away ? away : home;
+                                        resultText = `${totalHomeWithExtra}-${totalAwayWithExtra}`;
+                                        extraText = ` PEN (${penalties.home}-${penalties.away})`;
+                                    }
+                                }
+                            } else {
+                                const extra = simulateExtraTimeMatchTournament(homeElo, awayElo);
+                                const totalHomeWithExtra = totalHome + extra.home;
+                                const totalAwayWithExtra = totalAway + extra.away;
                                 
                                 if (totalHomeWithExtra > totalAwayWithExtra) {
-                                    winner = home;
-                                    resultText += ` (${extraHome}-${extraAway} pr)`;
-                                } else if (totalAwayWithExtra > totalHomeWithExtra) {
                                     winner = away;
-                                    resultText += ` (${extraHome}-${extraAway} pr)`;
+                                    resultText = `${totalHomeWithExtra}-${totalAwayWithExtra}`;
+                                    extraText = ' PRO';
+                                } else if (totalAwayWithExtra > totalHomeWithExtra) {
+                                    winner = home;
+                                    resultText = `${totalHomeWithExtra}-${totalAwayWithExtra}`;
+                                    extraText = ' PRO';
                                 } else {
-                                    // Penaltis después de la prórroga
                                     const penalties = simulatePenaltiesMatchTournament(homeElo, awayElo);
-                                    winner = penalties.home > penalties.away ? home : away;
-                                    resultText += ` (${penalties.home}-${penalties.away} pen)`;
+                                    winner = penalties.home > penalties.away ? away : home;
+                                    resultText = `${totalHomeWithExtra}-${totalAwayWithExtra}`;
+                                    extraText = ` PEN (${penalties.home}-${penalties.away})`;
                                 }
                             }
+                        }
+                        
+                        // Actualizar resultado global
+                        document.getElementById(`global-vuelta-${matchId}`).innerHTML = `Global: ${resultText}${extraText}`;
+                        
+                        // Resaltar equipo clasificado en NEGRITA sin reemplazar nombres
+                        const firstLegElement = document.querySelector(`#first-leg-${matchId}`).parentElement;
+                        const secondLegElement = document.querySelector(`#second-leg-${matchId}`).parentElement;
+                        
+                        // Limpiar clases anteriores
+                        firstLegElement.querySelectorAll('span').forEach(span => {
+                            span.classList.remove('qualified-team');
+                            span.innerHTML = span.innerHTML.replace(/<\/?strong>/g, '');
+                        });
+                        secondLegElement.querySelectorAll('span').forEach(span => {
+                            span.classList.remove('qualified-team');
+                            span.innerHTML = span.innerHTML.replace(/<\/?strong>/g, '');
+                        });
+                        
+                        // Aplicar negrita al equipo clasificado
+                        if (winner === home) {
+                            // En la ida: home vs away -> home debe estar en negrita (primer span)
+                            const homeSpan = firstLegElement.querySelector('span:first-child');
+                            homeSpan.innerHTML = `<strong class="qualified-team">${home}</strong>`;
+                            
+                            // En la vuelta: away vs home -> home debe estar en negrita (tercer span)
+                            const awaySpan = secondLegElement.querySelector('span:nth-child(3)');
+                            awaySpan.innerHTML = `<strong class="qualified-team">${home}</strong>`;
                         } else {
-                            // Sin regla de goles fuera o campo neutral, directamente a prórroga en el segundo partido
-                            const extra = simulateExtraTimeMatchTournament(homeElo, awayElo);
-                            const extraHome = extra.home;
-                            const extraAway = extra.away;
+                            // En la ida: home vs away -> away debe estar en negrita (tercer span)
+                            const awaySpan = firstLegElement.querySelector('span:nth-child(3)');
+                            awaySpan.innerHTML = `<strong class="qualified-team">${away}</strong>`;
                             
-                            const totalHomeWithExtra = totalHome + extraHome;
-                            const totalAwayWithExtra = totalAway + extraAway;
-                            
-                            if (totalHomeWithExtra > totalAwayWithExtra) {
-                                winner = home;
-                                resultText += ` (${extraHome}-${extraAway} pr)`;
-                            } else if (totalAwayWithExtra > totalHomeWithExtra) {
-                                winner = away;
-                                resultText += ` (${extraHome}-${extraAway} pr)`;
-                            } else {
-                                const penalties = simulatePenaltiesMatchTournament(homeElo, awayElo);
-                                winner = penalties.home > penalties.away ? home : away;
-                                resultText += ` (${penalties.home}-${penalties.away} pen)`;
-                            }
+                            // En la vuelta: away vs home -> away debe estar en negrita (primer span)
+                            const homeSpan = secondLegElement.querySelector('span:first-child');
+                            homeSpan.innerHTML = `<strong class="qualified-team">${away}</strong>`;
+                        }
+                        
+                        // Guardar resultado
+                        matchData.winner = winner;
+                        matchData.resultText = resultText + extraText;
+                        
+                        // Actualizar sistema de forma definitivo
+                        updateTeamForm(winner === home ? home : away, 'W');
+                        updateTeamForm(winner === home ? away : home, 'L');
+                        
+                        // Guardar perdedor para partido por el 3er puesto
+                        if (roundIndex >= 1) {
+                            const loser = matchData.home === winner ? matchData.away : matchData.home;
+                            tournamentData.semiFinalLosers.push(loser);
                         }
                     }
+                    
+                    // Verificar si todos los partidos de esta ronda están completos
+                    if (leg === 'second') {
+                        const currentRound = tournamentData.knockoutRounds[roundIndex];
+                        const allFinished = currentRound.every(m => m.secondLeg.simulated);
+                        
+                        if (allFinished) {
+                            if (roundIndex >= 1 && thirdPlaceCheckbox.checked) {
+                                tournamentData.thirdPlaceTeams = tournamentData.semiFinalLosers.slice(-2);
+                            }
+                            
+                            advanceToNextRound(roundIndex);
+                        }
+                    }
+                    
                 } else {
-                    // Single match
+                    // Partido único
                     const result = simulateTournamentMatch(home, away, finalIsNeutral, homeBonus, awayBonus);
-                    homeGoals = result.homeGoals;
-                    awayGoals = result.awayGoals;
-                    resultText = `${homeGoals}-${awayGoals}`;
+                    let homeGoals = result.homeGoals;
+                    let awayGoals = result.awayGoals;
+                    let resultText = `${homeGoals}-${awayGoals}`;
+                    let winner = null;
                     
                     if (homeGoals > awayGoals) {
                         winner = home;
@@ -2690,60 +2929,94 @@
                             winner = home;
                             homeGoals = totalHome;
                             awayGoals = totalAway;
-                            resultText = `${totalHome}-${totalAway}`;
+                            resultText = `${totalHome}-${totalAway} PRO`;
                         } else if (totalAway > totalHome) {
                             winner = away;
                             homeGoals = totalHome;
                             awayGoals = totalAway;
-                            resultText = `${totalHome}-${totalAway}`;
+                            resultText = `${totalHome}-${totalAway} PRO`;
                         } else {
                             const penalties = simulatePenaltiesMatchTournament(homeElo, awayElo);
                             winner = penalties.home > penalties.away ? home : away;
-                            resultText = `${totalHome}-${totalAway} (${penalties.home}-${penalties.away} pen)`;
+                            resultText = `${totalHome}-${totalAway} PEN (${penalties.home}-${penalties.away})`;
                         }
                     }
-                }
-                
-                // Update display
-                document.getElementById(`result-${matchId}`).textContent = resultText;
-                
-                // Store result and advance winner
-                if (!tournamentData.knockoutRounds[roundIndex]) {
-                    tournamentData.knockoutRounds[roundIndex] = [];
-                }
-                
-                const match = tournamentData.knockoutRounds[roundIndex].find(m => m.id === matchId);
-                if (match) {
-                    match.winner = winner;
-                    match.result = resultText;
                     
-                    // Actualizar sistema de forma
-                    if (winner === home) {
-                        updateTeamForm(home, 'W');
-                        updateTeamForm(away, 'L');
-                    } else {
-                        updateTeamForm(away, 'W');
-                        updateTeamForm(home, 'L');
+                    // Update display
+                    document.getElementById(`result-${matchId}`).textContent = resultText;
+                    
+                    // Store result and advance winner
+                    if (!tournamentData.knockoutRounds[roundIndex]) {
+                        tournamentData.knockoutRounds[roundIndex] = [];
                     }
                     
-                    // Guardar perdedor para partido por el 3er puesto
-                    if (roundIndex >= 1) {
-                        const loser = match.home === winner ? match.away : match.home;
-                        tournamentData.semiFinalLosers.push(loser);
-                    }
-                    
-                    // Check if all matches in current round are finished
-                    const currentRound = tournamentData.knockoutRounds[roundIndex];
-                    const allFinished = currentRound.every(m => m.winner);
-                    
-                    if (allFinished) {
-                        // Si estamos en semifinales, guardar perdedores para partido por el 3er puesto
-                        if (roundIndex >= 1 && thirdPlaceCheckbox.checked) {
-                            tournamentData.thirdPlaceTeams = tournamentData.semiFinalLosers.slice(-2);
+                    const match = tournamentData.knockoutRounds[roundIndex].find(m => m.id === matchId);
+                    if (match) {
+                        match.winner = winner;
+                        match.result = resultText;
+                        
+                        // Actualizar sistema de forma
+                        if (winner === home) {
+                            updateTeamForm(home, 'W');
+                            updateTeamForm(away, 'L');
+                        } else {
+                            updateTeamForm(away, 'W');
+                            updateTeamForm(home, 'L');
                         }
                         
-                        advanceToNextRound(roundIndex);
+                        // Guardar perdedor para partido por el 3er puesto
+                        if (roundIndex >= 1) {
+                            const loser = match.home === winner ? match.away : match.home;
+                            tournamentData.semiFinalLosers.push(loser);
+                        }
+                        
+                        // Check if all matches in current round are finished
+                        const currentRound = tournamentData.knockoutRounds[roundIndex];
+                        const allFinished = currentRound.every(m => m.winner);
+                        
+                        if (allFinished) {
+                            if (roundIndex >= 1 && thirdPlaceCheckbox.checked) {
+                                tournamentData.thirdPlaceTeams = tournamentData.semiFinalLosers.slice(-2);
+                            }
+                            
+                            advanceToNextRound(roundIndex);
+                        }
                     }
+                }
+            }
+
+            // Actualizar forma temporalmente (para la primera pierna)
+            function updateTeamFormTemp(home, away, homeGoals, awayGoals) {
+                if (homeGoals > awayGoals) {
+                    teamStreaks[home] = teamStreaks[home] || { currentStreak: 0, hasBonus: false };
+                    teamStreaks[home].currentStreak = (teamStreaks[home].currentStreak || 0) + 1;
+                    
+                    teamStreaks[away] = teamStreaks[away] || { currentStreak: 0, hasBonus: false };
+                    teamStreaks[away].currentStreak = 0;
+                } else if (awayGoals > homeGoals) {
+                    teamStreaks[away] = teamStreaks[away] || { currentStreak: 0, hasBonus: false };
+                    teamStreaks[away].currentStreak = (teamStreaks[away].currentStreak || 0) + 1;
+                    
+                    teamStreaks[home] = teamStreaks[home] || { currentStreak: 0, hasBonus: false };
+                    teamStreaks[home].currentStreak = 0;
+                } else {
+                    teamStreaks[home] = teamStreaks[home] || { currentStreak: 0, hasBonus: false };
+                    teamStreaks[home].currentStreak = 0;
+                    
+                    teamStreaks[away] = teamStreaks[away] || { currentStreak: 0, hasBonus: false };
+                    teamStreaks[away].currentStreak = 0;
+                }
+                
+                if (teamStreaks[home].currentStreak >= 2) {
+                    teamStreaks[home].hasBonus = true;
+                } else {
+                    teamStreaks[home].hasBonus = false;
+                }
+                
+                if (teamStreaks[away].currentStreak >= 2) {
+                    teamStreaks[away].hasBonus = true;
+                } else {
+                    teamStreaks[away].hasBonus = false;
                 }
             }
 
@@ -2752,29 +3025,23 @@
                 const homeElo = teamData[home];
                 const awayElo = teamData[away];
                 
-                // Usar el mismo sistema que en simulateMatch() con bonus de goles adicionales
                 const eloDifference = homeElo - awayElo;
                 const homeAdvantage = isNeutral ? 0 : 0.15;
                 const eloWeight = 0.028;
                 
-                // Calcular goles esperados base
                 const baseHomeGoals = (1.1 + (eloDifference * eloWeight) + homeAdvantage) * homeBonus;
                 const baseAwayGoals = (0.9 - (eloDifference * eloWeight)) * awayBonus;
                 
-                // Asegurar valores positivos
                 const safeHomeGoals = Math.max(baseHomeGoals, 0.3);
                 const safeAwayGoals = Math.max(baseAwayGoals, 0.3);
                 
-                // Aplicar distribución de Poisson para goles base
                 let homeGoals = poissonRandom(safeHomeGoals);
                 let awayGoals = poissonRandom(safeAwayGoals);
                 
-                // APLICAR BONUS DE GOLES ADICIONALES SEGÚN DIFERENCIA DE ELO
                 const absEloDiff = Math.abs(eloDifference);
                 let extraGoalChance = 0;
                 let extraTwoGoalsChance = 0;
                 
-                // Determinar las probabilidades de gol extra según la diferencia de ELO
                 if (absEloDiff >= 20) {
                     extraGoalChance = 0.60;
                     extraTwoGoalsChance = 0.30;
@@ -2789,7 +3056,6 @@
                     extraTwoGoalsChance = 0.05;
                 }
                 
-                // Aplicar bonus al equipo con ventaja de ELO
                 if (eloDifference > 0) {
                     const rand = Math.random();
                     if (rand < extraTwoGoalsChance) {
@@ -2806,7 +3072,6 @@
                     }
                 }
                 
-                // Ajuste para mantener estadísticas generales
                 if (Math.abs(eloDifference) >= 20) {
                     const rand = Math.random();
                     if (homeGoals === awayGoals) {
@@ -2826,7 +3091,6 @@
                     }
                 }
                 
-                // Limitar goles máximos
                 homeGoals = Math.min(homeGoals, 7);
                 awayGoals = Math.min(awayGoals, 7);
                 
@@ -2857,7 +3121,6 @@
                 let homePenalties = 0;
                 let awayPenalties = 0;
                 
-                // Primera ronda de 5 penaltis
                 for (let i = 0; i < 5; i++) {
                     const homeProb = Math.max(0.5, Math.min(0.95, baseProbability + (eloDifference * eloWeightPenalties)));
                     const awayProb = Math.max(0.5, Math.min(0.95, baseProbability - (eloDifference * eloWeightPenalties)));
@@ -2866,7 +3129,6 @@
                     if (Math.random() < awayProb) awayPenalties++;
                 }
                 
-                // Muerte súbita si hay empate
                 while (homePenalties === awayPenalties) {
                     const homeProb = Math.max(0.5, Math.min(0.95, baseProbability + (eloDifference * eloWeightPenalties)));
                     const awayProb = Math.max(0.5, Math.min(0.95, baseProbability - (eloDifference * eloWeightPenalties)));
@@ -2879,21 +3141,18 @@
                 return { home: homePenalties, away: awayPenalties };
             }
 
-            // Advance to next knockout round - MODIFICADO para no incluir botón de campo neutral en rondas no finales
+            // Advance to next knockout round
             function advanceToNextRound(currentRoundIndex) {
                 const currentRound = tournamentData.knockoutRounds[currentRoundIndex];
                 const winners = currentRound.map(m => m.winner);
                 const nextRoundIndex = currentRoundIndex + 1;
                 
-                // Determinar nombre de la siguiente ronda
                 let nextRoundName = '';
                 const remainingTeams = winners.length;
                 
                 if (remainingTeams === 1) {
-                    // ¡Tenemos un campeón!
                     showChampion(winners[0]);
                     
-                    // Mostrar partido por el 3er puesto si está activado
                     if (thirdPlaceCheckbox.checked && tournamentData.thirdPlaceTeams.length === 2) {
                         showThirdPlaceMatch(tournamentData.thirdPlaceTeams[0], tournamentData.thirdPlaceTeams[1]);
                     }
@@ -2913,68 +3172,144 @@
                     nextRoundName = `Ronda de ${remainingTeams} equipos`;
                 }
                 
-                // Crear la siguiente ronda (no es final)
                 const nextRoundDiv = document.createElement('div');
                 nextRoundDiv.className = 'knockout-round';
                 nextRoundDiv.innerHTML = `<h3><i class="fas fa-arrow-right"></i> ${nextRoundName}</h3>`;
                 
-                // Contenedor de calendario
-                const calendarContainer = document.createElement('div');
-                calendarContainer.className = 'calendar-container';
+                const isTwoLegs = twoLegsCheckbox.checked;
                 
-                const matchesContainer = document.createElement('div');
-                matchesContainer.className = 'matches-container';
-                
-                // Mezclar los ganadores para el siguiente emparejamiento
-                const shuffledWinners = [...winners].sort(() => Math.random() - 0.5);
-                
-                // Crear los partidos de la siguiente ronda
-                tournamentData.knockoutRounds[nextRoundIndex] = [];
-                
-                for (let i = 0; i < shuffledWinners.length; i += 2) {
-                    if (i + 1 < shuffledWinners.length) {
-                        const matchId = `ko-${nextRoundIndex}-${i/2}`;
-                        const matchDiv = document.createElement('div');
-                        matchDiv.className = 'match';
-                        matchDiv.innerHTML = `
-                            <span>${shuffledWinners[i]}</span>
-                            <span class="match-result" id="result-${matchId}">-</span>
-                            <span>${shuffledWinners[i + 1]}</span>
-                            <button class="simulate-match" data-match="${matchId}" data-home="${shuffledWinners[i]}" data-away="${shuffledWinners[i + 1]}" data-round="${nextRoundIndex}">
-                                <i class="fas fa-play"></i> Simular
-                            </button>
-                        `;
-                        matchesContainer.appendChild(matchDiv);
-                        
-                        // Guardar información del partido
-                        tournamentData.knockoutRounds[nextRoundIndex].push({
-                            id: matchId,
-                            home: shuffledWinners[i],
-                            away: shuffledWinners[i + 1],
-                            winner: null,
-                            result: null
-                        });
+                if (isTwoLegs) {
+                    const twoLegsContainer = document.createElement('div');
+                    twoLegsContainer.className = 'knockout-two-legs';
+                    
+                    const firstLegColumn = document.createElement('div');
+                    firstLegColumn.className = 'leg-column';
+                    firstLegColumn.innerHTML = `<div class="leg-title">Ida</div>`;
+                    
+                    const secondLegColumn = document.createElement('div');
+                    secondLegColumn.className = 'leg-column';
+                    secondLegColumn.innerHTML = `<div class="leg-title">Vuelta</div>`;
+                    
+                    const shuffledWinners = [...winners].sort(() => Math.random() - 0.5);
+                    
+                    tournamentData.knockoutRounds[nextRoundIndex] = [];
+                    
+                    for (let i = 0; i < shuffledWinners.length; i += 2) {
+                        if (i + 1 < shuffledWinners.length) {
+                            const matchId = `ko-${nextRoundIndex}-${i/2}`;
+                            const home = shuffledWinners[i];
+                            const away = shuffledWinners[i + 1];
+                            
+                            const firstLegMatch = document.createElement('div');
+                            firstLegMatch.className = 'two-leg-match';
+                            firstLegMatch.innerHTML = `
+                                <div class="match-leg">
+                                    <span>${home}</span>
+                                    <span class="match-result" id="first-leg-${matchId}">-</span>
+                                    <span>${away}</span>
+                                    <button class="simulate-match" data-match="${matchId}" data-leg="first" data-home="${home}" data-away="${away}" data-round="${nextRoundIndex}" title="Simular partido de ida">
+                                        <i class="fas fa-play"></i> Sim.
+                                    </button>
+                                </div>
+                                <div class="global-result" id="global-${matchId}" style="display: none;">Global: -</div>
+                            `;
+                            
+                            const secondLegMatch = document.createElement('div');
+                            secondLegMatch.className = 'two-leg-match';
+                            secondLegMatch.innerHTML = `
+                                <div class="match-leg">
+                                    <span>${away}</span>
+                                    <span class="match-result" id="second-leg-${matchId}">-</span>
+                                    <span>${home}</span>
+                                    <button class="simulate-match" data-match="${matchId}" data-leg="second" data-home="${away}" data-away="${home}" data-round="${nextRoundIndex}" title="Simular partido de vuelta" disabled>
+                                        <i class="fas fa-play"></i> Sim.
+                                    </button>
+                                </div>
+                                <div class="global-result" id="global-vuelta-${matchId}">Global: -</div>
+                            `;
+                            
+                            firstLegColumn.appendChild(firstLegMatch);
+                            secondLegColumn.appendChild(secondLegMatch);
+                            
+                            tournamentData.knockoutRounds[nextRoundIndex].push({
+                                id: matchId,
+                                home: home,
+                                away: away,
+                                firstLeg: { homeGoals: null, awayGoals: null, simulated: false },
+                                secondLeg: { homeGoals: null, awayGoals: null, simulated: false },
+                                winner: null,
+                                resultText: ''
+                            });
+                        }
                     }
+                    
+                    twoLegsContainer.appendChild(firstLegColumn);
+                    twoLegsContainer.appendChild(secondLegColumn);
+                    nextRoundDiv.appendChild(twoLegsContainer);
+                } else {
+                    const calendarContainer = document.createElement('div');
+                    calendarContainer.className = 'calendar-container';
+                    
+                    const matchesContainer = document.createElement('div');
+                    matchesContainer.className = 'matches-container';
+                    
+                    const shuffledWinners = [...winners].sort(() => Math.random() - 0.5);
+                    
+                    tournamentData.knockoutRounds[nextRoundIndex] = [];
+                    
+                    for (let i = 0; i < shuffledWinners.length; i += 2) {
+                        if (i + 1 < shuffledWinners.length) {
+                            const matchId = `ko-${nextRoundIndex}-${i/2}`;
+                            const matchDiv = document.createElement('div');
+                            matchDiv.className = 'match';
+                            matchDiv.innerHTML = `
+                                <span>${shuffledWinners[i]}</span>
+                                <span class="match-result" id="result-${matchId}">-</span>
+                                <span>${shuffledWinners[i + 1]}</span>
+                                <button class="simulate-match" data-match="${matchId}" data-home="${shuffledWinners[i]}" data-away="${shuffledWinners[i + 1]}" data-round="${nextRoundIndex}" title="Simular partido">
+                                    <i class="fas fa-play"></i> Sim.
+                                </button>
+                            `;
+                            matchesContainer.appendChild(matchDiv);
+                            
+                            tournamentData.knockoutRounds[nextRoundIndex].push({
+                                id: matchId,
+                                home: shuffledWinners[i],
+                                away: shuffledWinners[i + 1],
+                                winner: null,
+                                result: null
+                            });
+                        }
+                    }
+                    
+                    calendarContainer.appendChild(matchesContainer);
+                    nextRoundDiv.appendChild(calendarContainer);
                 }
                 
-                calendarContainer.appendChild(matchesContainer);
-                nextRoundDiv.appendChild(calendarContainer);
                 tournamentContent.appendChild(nextRoundDiv);
                 
-                // Añadir event listeners a los nuevos botones
                 document.querySelectorAll(`.simulate-match[data-round="${nextRoundIndex}"]`).forEach(btn => {
                     btn.addEventListener('click', function() {
                         const matchId = this.dataset.match;
                         const home = this.dataset.home;
                         const away = this.dataset.away;
                         const round = parseInt(this.dataset.round);
-                        simulateKnockoutMatch(matchId, home, away, round, false);
+                        const leg = this.dataset.leg;
+                        
+                        if (leg === 'second') {
+                            const matchData = tournamentData.knockoutRounds[round].find(m => m.id === matchId);
+                            if (!matchData.firstLeg.simulated) {
+                                alert('Primero debes simular el partido de ida.');
+                                return;
+                            }
+                        }
+                        
+                        simulateKnockoutMatch(matchId, home, away, round, leg, false);
                         this.disabled = true;
-                        this.innerHTML = '<i class="fas fa-check"></i> Simulado';
+                        this.innerHTML = '<i class="fas fa-check"></i> Sim.';
                     });
                 });
                 
-                // Hacer scroll a la nueva ronda
                 setTimeout(() => {
                     nextRoundDiv.scrollIntoView({ 
                         behavior: 'smooth', 
@@ -2983,7 +3318,7 @@
                 }, 100);
             }
 
-            // Mostrar partido final - CON botón de campo neutral
+            // Mostrar partido final
             function showFinalMatch(team1, team2) {
                 const finalDiv = document.createElement('div');
                 finalDiv.className = 'final-match';
@@ -2994,8 +3329,8 @@
                         <span class="match-result" id="result-final">-</span>
                         <span>${team2}</span>
                         <div class="match-buttons">
-                            <button class="simulate-match" id="simulate-final" data-home="${team1}" data-away="${team2}">
-                                <i class="fas fa-play"></i> Simular
+                            <button class="simulate-match" id="simulate-final" data-home="${team1}" data-away="${team2}" title="Simular partido">
+                                <i class="fas fa-play"></i> Sim.
                             </button>
                             <button class="simulate-neutral" id="simulate-final-neutral" data-home="${team1}" data-away="${team2}">
                                 (campo neutral)
@@ -3005,26 +3340,23 @@
                 `;
                 tournamentContent.appendChild(finalDiv);
                 
-                // Añadir event listener al botón normal
                 document.getElementById('simulate-final').addEventListener('click', function() {
                     const home = this.dataset.home;
                     const away = this.dataset.away;
                     simulateFinalMatch(home, away, false);
                     this.disabled = true;
-                    this.innerHTML = '<i class="fas fa-check"></i> Simulado';
-                    // También deshabilitar el botón de campo neutral
+                    this.innerHTML = '<i class="fas fa-check"></i> Sim.';
                     const neutralBtn = document.getElementById('simulate-final-neutral');
                     if (neutralBtn) neutralBtn.style.display = 'none';
                 });
                 
-                // Añadir event listener al botón de campo neutral
                 document.getElementById('simulate-final-neutral').addEventListener('click', function() {
                     const home = this.dataset.home;
                     const away = this.dataset.away;
                     simulateFinalMatch(home, away, true);
                     const simulateBtn = document.getElementById('simulate-final');
                     if (simulateBtn) simulateBtn.disabled = true;
-                    if (simulateBtn) simulateBtn.innerHTML = '<i class="fas fa-check"></i> Simulado';
+                    if (simulateBtn) simulateBtn.innerHTML = '<i class="fas fa-check"></i> Sim.';
                     this.style.display = 'none';
                 });
             }
@@ -3034,15 +3366,12 @@
                 const homeElo = teamData[home];
                 const awayElo = teamData[away];
                 
-                // Verificar bonificaciones por forma
                 const homeBonus = teamStreaks[home]?.hasBonus ? 1.1 : 1.0;
                 const awayBonus = teamStreaks[away]?.hasBonus ? 1.1 : 1.0;
                 
-                // Obtener si es campo neutral (del checkbox general o del parámetro)
                 const tournamentIsNeutral = tournamentNeutralFieldCheckbox.checked;
                 const finalIsNeutral = isNeutral || tournamentIsNeutral;
                 
-                // Simular partido único
                 const result = simulateTournamentMatch(home, away, finalIsNeutral, homeBonus, awayBonus);
                 let homeGoals = result.homeGoals;
                 let awayGoals = result.awayGoals;
@@ -3054,7 +3383,6 @@
                 } else if (awayGoals > homeGoals) {
                     winner = away;
                 } else {
-                    // En la final, prórroga y penaltis
                     const extra = simulateExtraTimeMatchTournament(homeElo, awayElo);
                     const totalHome = homeGoals + extra.home;
                     const totalAway = awayGoals + extra.away;
@@ -3063,23 +3391,21 @@
                         winner = home;
                         homeGoals = totalHome;
                         awayGoals = totalAway;
-                        resultText = `${totalHome}-${totalAway}`;
+                        resultText = `${totalHome}-${totalAway} PRO`;
                     } else if (totalAway > totalHome) {
                         winner = away;
                         homeGoals = totalHome;
                         awayGoals = totalAway;
-                        resultText = `${totalHome}-${totalAway}`;
+                        resultText = `${totalHome}-${totalAway} PRO`;
                     } else {
                         const penalties = simulatePenaltiesMatchTournament(homeElo, awayElo);
                         winner = penalties.home > penalties.away ? home : away;
-                        resultText = `${totalHome}-${totalAway} (${penalties.home}-${penalties.away} pen)`;
+                        resultText = `${totalHome}-${totalAway} PEN (${penalties.home}-${penalties.away})`;
                     }
                 }
                 
-                // Actualizar resultado
                 document.getElementById('result-final').textContent = resultText;
                 
-                // Mostrar campeón
                 showChampion(winner);
             }
 
@@ -3090,12 +3416,11 @@
                 championDiv.innerHTML = `
                     <h3><i class="fas fa-crown"></i> ¡Campeón!</h3>
                     <div class="team-name">${champion}</div>
-                    <p style="margin-top: 1rem; color: #5D4037;">ELO: ${teamData[champion] || 'N/A'}</p>
                 `;
                 tournamentContent.appendChild(championDiv);
             }
 
-            // Mostrar partido por el 3er puesto - CON botón de campo neutral
+            // Mostrar partido por el 3er puesto
             function showThirdPlaceMatch(team1, team2) {
                 const thirdPlaceDiv = document.createElement('div');
                 thirdPlaceDiv.className = 'third-place-match';
@@ -3106,8 +3431,8 @@
                         <span class="match-result" id="result-third-place">-</span>
                         <span>${team2}</span>
                         <div class="match-buttons">
-                            <button class="simulate-match" id="simulate-third-place" data-home="${team1}" data-away="${team2}">
-                                <i class="fas fa-play"></i> Simular
+                            <button class="simulate-match" id="simulate-third-place" data-home="${team1}" data-away="${team2}" title="Simular partido">
+                                <i class="fas fa-play"></i> Sim.
                             </button>
                             <button class="simulate-neutral" id="simulate-third-place-neutral" data-home="${team1}" data-away="${team2}">
                                 (campo neutral)
@@ -3117,26 +3442,23 @@
                 `;
                 tournamentContent.appendChild(thirdPlaceDiv);
                 
-                // Añadir event listener al botón normal
                 document.getElementById('simulate-third-place').addEventListener('click', function() {
                     const home = this.dataset.home;
                     const away = this.dataset.away;
                     simulateThirdPlaceMatch(home, away, false);
                     this.disabled = true;
-                    this.innerHTML = '<i class="fas fa-check"></i> Simulado';
-                    // También deshabilitar el botón de campo neutral
+                    this.innerHTML = '<i class="fas fa-check"></i> Sim.';
                     const neutralBtn = document.getElementById('simulate-third-place-neutral');
                     if (neutralBtn) neutralBtn.style.display = 'none';
                 });
                 
-                // Añadir event listener al botón de campo neutral
                 document.getElementById('simulate-third-place-neutral').addEventListener('click', function() {
                     const home = this.dataset.home;
                     const away = this.dataset.away;
                     simulateThirdPlaceMatch(home, away, true);
                     const simulateBtn = document.getElementById('simulate-third-place');
                     if (simulateBtn) simulateBtn.disabled = true;
-                    if (simulateBtn) simulateBtn.innerHTML = '<i class="fas fa-check"></i> Simulado';
+                    if (simulateBtn) simulateBtn.innerHTML = '<i class="fas fa-check"></i> Sim.';
                     this.style.display = 'none';
                 });
             }
@@ -3146,15 +3468,12 @@
                 const homeElo = teamData[home];
                 const awayElo = teamData[away];
                 
-                // Verificar bonificaciones por forma
                 const homeBonus = teamStreaks[home]?.hasBonus ? 1.1 : 1.0;
                 const awayBonus = teamStreaks[away]?.hasBonus ? 1.1 : 1.0;
                 
-                // Obtener si es campo neutral (del checkbox general o del parámetro)
                 const tournamentIsNeutral = tournamentNeutralFieldCheckbox.checked;
                 const finalIsNeutral = isNeutral || tournamentIsNeutral;
                 
-                // Simular partido único
                 const result = simulateTournamentMatch(home, away, finalIsNeutral, homeBonus, awayBonus);
                 let homeGoals = result.homeGoals;
                 let awayGoals = result.awayGoals;
@@ -3166,16 +3485,13 @@
                 } else if (awayGoals > homeGoals) {
                     winner = away;
                 } else {
-                    // En partido por el 3er puesto, directamente a penaltis
                     const penalties = simulatePenaltiesMatchTournament(homeElo, awayElo);
                     winner = penalties.home > penalties.away ? home : away;
-                    resultText = `${homeGoals}-${awayGoals} (${penalties.home}-${penalties.away} pen)`;
+                    resultText = `${homeGoals}-${awayGoals} PEN (${penalties.home}-${penalties.away})`;
                 }
                 
-                // Actualizar resultado
                 document.getElementById('result-third-place').textContent = resultText;
                 
-                // Mostrar ganador del 3er puesto
                 const thirdPlaceResult = document.createElement('div');
                 thirdPlaceResult.className = 'match-result';
                 thirdPlaceResult.style.color = 'var(--warning)';
@@ -3202,10 +3518,43 @@
                     semiFinalLosers: [],
                     thirdPlaceTeams: []
                 };
-                // Reset sistema de forma
                 teamForm = {};
                 teamStreaks = {};
             });
+
+            // Seleccionar equipos aleatoriamente
+            function selectRandomTeams() {
+                const format = tournamentFormatSelect.value;
+                let requiredTeams;
+                
+                if (format === 'league') {
+                    requiredTeams = 20;
+                } else {
+                    requiredTeams = {
+                        '32_knockout': 32,
+                        '16_knockout': 16,
+                        '8_knockout': 8,
+                        '4_knockout': 4
+                    }[format];
+                }
+                
+                const allTeams = Object.keys(teamData);
+                
+                if (allTeams.length < requiredTeams) {
+                    alert(`No hay suficientes equipos en la base de datos. Se necesitan ${requiredTeams} y solo hay ${allTeams.length}.`);
+                    return;
+                }
+                
+                const shuffledTeams = [...allTeams].sort(() => Math.random() - 0.5);
+                selectedTeams = shuffledTeams.slice(0, requiredTeams);
+                
+                updateSelectedTeams();
+                updateTeamCount();
+                updatePopupCounter();
+                updateTeamList(teamSearch.value);
+                
+                alert(`${requiredTeams} equipos seleccionados aleatoriamente.`);
+            }
 
             // Event Listeners
             selectTeamsBtn.addEventListener('click', () => {
@@ -3225,16 +3574,16 @@
             simulateBtn.addEventListener('click', simulateMatch);
             
             tournamentFormatSelect.addEventListener('change', updateTournamentOptions);
-            matchTypeSelect.addEventListener('change', updateTournamentOptions);
+            twoLegsCheckbox.addEventListener('change', updateTournamentOptions);
             
             teamSearch.addEventListener('input', () => updateTeamList(teamSearch.value));
             
             popupClose.addEventListener('click', closeTeamPopup);
             
-            // Botón OK en el popup
             popupOkBtn.addEventListener('click', closeTeamPopup);
             
-            // Close popup on escape key or click outside
+            popupRandomBtn.addEventListener('click', selectRandomTeams);
+            
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && teamPopup.style.display === 'flex') {
                     closeTeamPopup();
